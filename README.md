@@ -9,19 +9,19 @@ It uses [bitly.com](https://bitly.com/) API service as a source of information.
 
  - python3
  - `requests` library
- - `python-pyenv` library
+ - `python-dotenv` library
 
 
 ## How to install
 
 Get the source code of this repo:
 ```
-git clone https://github.com/leksuss/dvmn.git
+git clone https://github.com/leksuss/bitly.git
 ```
 
-Go to this script:
+Open project folder:
 ```
-cd dvmn/bitly
+cd bitly
 ```
 
 Then install dependencies:
@@ -37,14 +37,16 @@ This script uses bitly.com API, so you should [register](https://bitly.com/a/sig
 
 ## How to use
 
-Run script without arguments like this:
-```
-python3 bitly.py
-```
-
-Then you can input any valid link and receive shorten link (like this: `https://bit.ly/3jQdelW`)
+You can pass as argument any valid link and receive shorten link (like this: `https://bit.ly/3jQdelW`)
 Or if you input already shorten bitly link, you will receive count of clicks on this link made.
 
+```
+# to get shorten link
+python3 bitly.py https://github.com/leksuss/bitly
+
+# to get count of clicks
+python3 bitly.py https://bit.ly/3jQdelW
+```
 
 ## Running example
 
