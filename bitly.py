@@ -17,7 +17,8 @@ def read_args():
             Shorten Link CLI Tool wich uses bitly.com API
         '''
     )
-    parser.add_argument('url',
+    parser.add_argument(
+        'url',
         help='''
             Any valid link to shorten,
             or the short bitly link to receive count of clicks
@@ -38,12 +39,12 @@ def shorten_link(token, url):
     headers = {
         'Authorization': f'Bearer {token}',
     }
-    json_data = {
+    json = {
         'long_url': url,
     }
     api_url = 'https://api-ssl.bitly.com/v4/shorten'
 
-    response = requests.post(api_url, headers=headers, json=json_data)
+    response = requests.post(api_url, headers=headers, json=json)
     response.raise_for_status()
     return response.json()['link']
 
@@ -97,5 +98,4 @@ def main():
 
 
 if __name__ == '__main__':
-
     main()
