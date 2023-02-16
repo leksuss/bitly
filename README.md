@@ -50,5 +50,5 @@ python3 bitly.py https://bit.ly/3jQdelW
 
 ## Running example
 
-<img src="https://github.com/leksuss/dvmn/blob/main/.github/img/bitly_example.gif" width="700">
+<img src="https://github.com/leksuss/bitly/blob/master/.github/bitly_example.gif" width="700">
 
