@@ -1,3 +1,4 @@
+import argparse
 import os
 import requests
 from urllib.parse import urlparse
@@ -7,6 +8,23 @@ from dotenv import load_dotenv
 
 class BitlyApiKeyMissing(KeyError):
     pass
+
+
+def read_args():
+    """Read arguments of this script"""
+    parser = argparse.ArgumentParser(
+        description='''
+            Shorten Link CLI Tool wich uses bitly.com API
+        '''
+    )
+    parser.add_argument('url',
+        help='''
+            Any valid link to shorten,
+            or the short bitly link to receive count of clicks
+        '''
+    )
+    args = parser.parse_args()
+    return args
 
 
 def remove_scheme(url):
@@ -65,16 +83,15 @@ def main():
     if not token:
         raise BitlyApiKeyMissing('Не указан BITLY API KEY!')
 
-    url = input('Введите ссылку: ')
+    url = read_args().url
     no_scheme_url = remove_scheme(url)
 
     try:
         if is_bitlink(token, no_scheme_url):
             total_clicks = count_clicks(token, no_scheme_url)
-            print(f'По вашей ссылке прошли: {total_clicks} раз(а)')
+            print(f'Количество переходов по ссылке битли: {total_clicks}')
         else:
-            bitlink = shorten_link(token, url)
-            print('Битлинк:', bitlink)
+            print(shorten_link(token, url))
     except requests.exceptions.HTTPError:
         print('Вы ввели неверную ссылку')
 
